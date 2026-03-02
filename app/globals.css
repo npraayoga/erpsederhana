@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
+/* ── Design Tokens — Rose Quartz Palette ───────────────────
+   Pink elegan berbasis rose/mauve, bukan pink neon.
+   Inspirasi: luxury editorial, refined feminine, soft-warm.
+──────────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surface */
+  --background:       #fdf8f8;   /* warm white — bukan putih cold */
+  --surface:          #ffffff;
+  --surface-subtle:   #fef1f2;   /* rose-50 yang sangat pucat */
+  --surface-muted:    #fce7ea;   /* rose-100 */
+
+  /* Border */
+  --border:           #fbc8d0;   /* rose-200 — warm, lembut */
+  --border-subtle:    #fde4e7;   /* rose-100/150 */
+  --border-strong:    #f9a8b4;   /* rose-300 */
+
+  /* Text */
+  --foreground:       #1c0a0d;   /* rose-950 — bukan #000 */
+  --foreground-muted: #7f4a55;   /* rose-800/muted */
+  --foreground-faint: #b07a84;   /* rose-600/faint */
+
+  /* Accent — tombol, elemen interaktif */
+  --accent:           #e11d48;   /* rose-600 */
+  --accent-soft:      #fb7185;   /* rose-400 */
+  --accent-hover:     #be123c;   /* rose-700 */
+  --accent-bg:        #fff1f2;   /* rose-50 */
+  --accent-bg-hover:  #ffe4e6;   /* rose-100 */
+
+  /* Sidebar */
+  --sidebar-bg:       #fff5f6;
+  --sidebar-border:   #fbc8d0;
+  --sidebar-active:   #ffe4e6;
+  --sidebar-icon:     #f43f5e;
+
+  /* Status — tetap pakai warna semantik universal */
+  --success:          #059669;
+  --warning:          #d97706;
+  --danger:           #dc2626;
+
+  /* Typography */
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  /* Shape */
+  --radius-sm: 0.375rem;
+  --radius:    0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
 }
 
+/* ── Tailwind v4 Theme Bridge ──────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background:       var(--background);
+  --color-surface:          var(--surface);
+  --color-surface-subtle:   var(--surface-subtle);
+  --color-surface-muted:    var(--surface-muted);
+  --color-border:           var(--border);
+  --color-border-subtle:    var(--border-subtle);
+  --color-border-strong:    var(--border-strong);
+  --color-foreground:       var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-faint: var(--foreground-faint);
+  --color-accent:           var(--accent);
+  --color-accent-soft:      var(--accent-soft);
+  --color-accent-hover:     var(--accent-hover);
+  --color-accent-bg:        var(--accent-bg);
+  --color-sidebar-bg:       var(--sidebar-bg);
+  --color-sidebar-border:   var(--sidebar-border);
+  --color-sidebar-active:   var(--sidebar-active);
+  --color-sidebar-icon:     var(--sidebar-icon);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base Styles ───────────────────────────────────────────── */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
+  height: 100%;
+  margin: 0;
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.6;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--foreground);
+  margin: 0;
+}
+
+p { margin: 0; color: var(--foreground-muted); }
+
+/* ── Focus Ring ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--border-strong); }
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background-color: #fce7f3;
+  color: var(--foreground);
+}
+
+/* ── Input cleanup ──────────────────────────────────────────── */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] { -moz-appearance: textfield; }
+button { cursor: pointer; }

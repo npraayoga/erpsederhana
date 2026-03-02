@@ -1,0 +1,31 @@
+-- CreateTable
+CREATE TABLE "Produk" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nama" TEXT NOT NULL,
+    "kategori" TEXT NOT NULL,
+    "harga" INTEGER NOT NULL,
+    "stok" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- CreateTable
+CREATE TABLE "Customer" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nama" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "telp" TEXT NOT NULL,
+    "kota" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- CreateTable
+CREATE TABLE "Transaksi" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "customer" TEXT NOT NULL,
+    "produk" TEXT NOT NULL,
+    "jumlah" INTEGER NOT NULL,
+    "total" INTEGER NOT NULL,
+    "status" TEXT NOT NULL,
+    "tanggal" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
